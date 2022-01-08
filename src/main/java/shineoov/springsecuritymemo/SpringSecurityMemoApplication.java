@@ -9,5 +9,4 @@ public class SpringSecurityMemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityMemoApplication.class, args);
 	}
-
 }
