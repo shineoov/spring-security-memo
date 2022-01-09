@@ -15,5 +15,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
         );
         http.httpBasic();
+
+        //SESSION 설정
+        http.sessionManagement(session -> session
+                .maximumSessions(1) // 최대 Session 수
+                .maxSessionsPreventsLogin(false) // true -> 추가 로그인 X
+        );
     }
 }
