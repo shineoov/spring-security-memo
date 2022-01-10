@@ -1,12 +1,14 @@
 package shineoov.springsecuritymemo.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Slf4j
 @EnableWebSecurity
+@Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -15,13 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/").permitAll()
                 .anyRequest().authenticated()
         );
-
-        http.httpBasic();
-
         configureFormLogin(http);
-
         configureLogout(http);
-
         configureSession(http);
     }
 
