@@ -4,6 +4,17 @@ logging:
     org.springframework.security: INFO
 
 spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/DB/h2/data/memo
+    username: sa
+    password:
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+
   security:
     user:
       name: user

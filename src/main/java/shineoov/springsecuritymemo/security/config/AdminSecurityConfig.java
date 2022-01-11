@@ -1,4 +1,4 @@
-package shineoov.springsecuritymemo.config;
+package shineoov.springsecuritymemo.security.config;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
