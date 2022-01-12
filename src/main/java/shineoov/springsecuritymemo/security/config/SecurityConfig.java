@@ -64,9 +64,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     log.info("[LoginSuccess] name={}", authentication.getName());
                     log.info("[LoginSuccess] principal={}", authentication.getPrincipal());
                 })
+                .defaultSuccessUrl("/")
                 .failureHandler((request, response, exception) -> {
                     log.info("[LoginFail] exceptionMessage={}", exception.getMessage());
                 })
+                .failureUrl("/login?error")
                 .permitAll()
         );
     }
