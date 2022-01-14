@@ -2,6 +2,8 @@ package shineoov.springsecuritymemo.security.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,6 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import shineoov.springsecuritymemo.domain.Account;
 import shineoov.springsecuritymemo.domain.AccountRepository;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,10 +30,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (account == null) {
             throw new UsernameNotFoundException("UsernameNotFoundException");
         }
-        return User.builder()
-                .username(account.getEmail())
-                .password(account.getPassword())
-                .roles("USER_ROLE")
-                .build();
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(account.getRole()));
+        
+        return new AccountAdapter(account, authorities);
     }
 }
