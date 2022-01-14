@@ -36,8 +36,8 @@ public class PasswordEncoderTest {
     @DisplayName("암호화 사용 X")
     void matchNonPasswordEncodeTest1() {
         //given
-        String rawPassword = "password12";
-        String encodePassword = "{noop}password12";
+        String rawPassword = "1234";
+        String encodePassword = "{bcrypt}$2a$10$Ue9SOkkTQcO26MPO9YYsFuscYj0KFF1z0mbRnD9cxF23U5rjfhWmK";
 
         //when
         boolean isMatch = passwordEncoder.matches(rawPassword, encodePassword);

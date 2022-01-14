@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import shineoov.springsecuritymemo.domain.AccountDto;
 import shineoov.springsecuritymemo.domain.AccountService;
-import shineoov.springsecuritymemo.security.service.AccountAdapter;
+import shineoov.springsecuritymemo.security.service.CustomUserDetails;
 
 @RequiredArgsConstructor
 @Controller
@@ -33,8 +33,8 @@ public class AccountController {
     @GetMapping("/accounts/info")
     public Object info() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        AccountAdapter accountAdapter = (AccountAdapter) authentication.getPrincipal();
-        return accountAdapter.getAccount();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        return customUserDetails;
     }
 
 }
