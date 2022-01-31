@@ -30,8 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests((requests) -> requests
                 .mvcMatchers("/", "/accounts/signup").permitAll()
+                .mvcMatchers("/mocking/all").permitAll()
+                .mvcMatchers("/mocking/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
         );
+
         configureFormLogin(http);
         configureLogout(http);
         configureSession(http);
